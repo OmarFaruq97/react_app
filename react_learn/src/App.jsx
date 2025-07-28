@@ -1,3 +1,4 @@
+import Picture from './UserComponent';
 function Fruit() {
   return (
     <div>
@@ -11,7 +12,10 @@ function Fruit() {
 }
 function Color(){
   return(
-    <h1>Red</h1>
+    <div>
+      <h1>Red</h1>
+    <Picture/>
+    </div>
   )
 }
 function Fish(){
