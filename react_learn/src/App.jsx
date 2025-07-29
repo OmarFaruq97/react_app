@@ -1,4 +1,4 @@
-import Login, {Profile, Image, Setting} from './UserComponent'
+import Login, {Profile, Image, Setting, UserKey, Add} from './UserComponent'
 function App(){
   return(
     <div>
@@ -7,6 +7,8 @@ function App(){
       <Profile/>
       <Image/>
       <Setting/>
+      <h1>{UserKey}</h1>
+      <h2>{Add}</h2>
     </div>
   )
 }

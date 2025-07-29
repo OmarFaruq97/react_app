@@ -35,3 +35,11 @@ export function Setting() {
     </div>
   );
 }
+
+export const UserKey ="@#@#";
+
+export function Add (){ 
+  return(
+    <div>10+20</div>
+  )
+}
