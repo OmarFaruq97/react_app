@@ -1,34 +1,13 @@
-import Picture from './UserComponent';
-function Fruit() {
-  return (
-    <div>
-      <h1>Main Component</h1>
-      <Color></Color>
-      <Fish></Fish>
-      <Car></Car>
-      {sum()}
-    </div>
-  );
-}
-function Color(){
+import Login, {Profile, Image, Setting} from './UserComponent'
+function App(){
   return(
     <div>
-      <h1>Red</h1>
-    <Picture/>
+      <h1>Import and Export Components as User Profile</h1>
+      <Login/>
+      <Profile/>
+      <Image/>
+      <Setting/>
     </div>
   )
 }
-function Fish(){
-  return(
-    <h2>Hilsha Fish</h2>
-  )
-}
-function Car(){
-  return(
-    <h3>BMW</h3>
-  )
-}
-function sum(){
-  return 10+10  
-}
-export default Fruit;
+export default App;
