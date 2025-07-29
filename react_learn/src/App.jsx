@@ -8,7 +8,7 @@ function App(){
       <Image/>
       <Setting/>
       <h1>{UserKey}</h1>
-      <h2>{Add}</h2>
+      <Add/>      
     </div>
   )
 }

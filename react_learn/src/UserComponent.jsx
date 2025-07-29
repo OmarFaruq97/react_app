@@ -38,8 +38,12 @@ export function Setting() {
 
 export const UserKey ="@#@#";
 
-export function Add (){ 
+export function Add (){
+  const result = 10+20;
   return(
-    <div>10+20</div>
+    <div>
+      {result}
+    </div>
+    
   )
 }
