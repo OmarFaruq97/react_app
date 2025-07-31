@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./TashbihApp.css"
 
-function App() {
-  const [count, setCount] = useState(0)
+function TashbihApp() {
+  const [subhanAllah, setsubhanAllah] = useState(0);
+  const [alhamdulillah, setAlhamdulillah] = useState(0);
+  const [astagfirullah, setAstagfirullah] = useState(0);
+  const reset = () => {
+    setsubhanAllah(0);
+    setAlhamdulillah(0);
+    setAstagfirullah(0);
+  };
 
   return (
-    <>
+    <div style={{ marginTop: "20ox", textAlign: "center" }}>
+      <h2>Tashbih App</h2>
+      <button onClick={() => setsubhanAllah(subhanAllah + 1)}>
+        SubhanAllah
+      </button>
+      <button onClick={() => setAlhamdulillah(alhamdulillah + 1)}>
+        Alhamdulillah
+      </button>
+      <button onClick={() => setAstagfirullah(astagfirullah + 1)}>
+        Astagfirullah
+      </button>
+      <button onClick={reset}>Reset</button>
+
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <span>
+          <ul>SubhanAllah: {subhanAllah} times</ul>
+          <ul>Alhamdulillah:{alhamdulillah} times</ul>
+          <ul>Astagfirullah: {astagfirullah} times</ul>
+        </span>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default TashbihApp;
