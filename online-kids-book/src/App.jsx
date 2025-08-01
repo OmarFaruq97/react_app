@@ -7,23 +7,24 @@ export default function Book() {
   let sculpture = sculptureList[index];
 
   function handleNextClick() {
-    setIndex((prevIndex) => (prevIndex +1  % sculptureList.length));
-    setShowMore(false);
+    if (index < sculptureList.length - 1) {
+      setIndex((prevIndex) => prevIndex + (1 % sculptureList.length));
+      setShowMore(false);
+    }
   }
 
-  function handleToggle(){
+  function handleToggle() {
     setShowMore((prev) => !prev);
   }
 
-  function handleJumpToPage(pageIndex){
+  function handleJumpToPage(pageIndex) {
     setIndex(pageIndex);
     setShowMore(false);
   }
 
-//   function handleShowMore() {
-//     setShowMore(!showMore);
-//   }
-  
+  //   function handleShowMore() {
+  //     setShowMore(!showMore);
+  //   }
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -31,37 +32,35 @@ export default function Book() {
       <h2>
         <i>{sculpture.name}</i>
       </h2>
-      <img src={sculpture.imgUrl}  width="300" height="250"/>
+      <img src={sculpture.imgUrl} width="300" height="250" />
 
       <div>
         <button onClick={handleToggle}>
-        {showMore ? "Hide" : "Show"} details
-      </button>
-      {showMore && (
-        <ul style={{ listStyleType: "none", padding: 0 }}>
-          <li>
-            <strong>Description:</strong> {sculpture.description}
-          </li>
-          <li>
-            <strong>Habitat:</strong> {sculpture.habitat}
-          </li>
-          <li>
-            <strong>Food:</strong> {sculpture.food}
-          </li>
-          <li>
-            <strong>Sound:</strong> {sculpture.sound}
-          </li>
-          <li>
-            <strong>Lifespan:</strong> {sculpture.lifespan}
-          </li>
-          <li>
-            <strong>Type:</strong> {sculpture.type}
-          </li>
-        </ul>
-      )}
+          {showMore ? "Hide" : "Show"} details
+        </button>
+        {showMore && (
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            <li>
+              <strong>Description:</strong> {sculpture.description}
+            </li>
+            <li>
+              <strong>Habitat:</strong> {sculpture.habitat}
+            </li>
+            <li>
+              <strong>Food:</strong> {sculpture.food}
+            </li>
+            <li>
+              <strong>Sound:</strong> {sculpture.sound}
+            </li>
+            <li>
+              <strong>Lifespan:</strong> {sculpture.lifespan}
+            </li>
+            <li>
+              <strong>Type:</strong> {sculpture.type}
+            </li>
+          </ul>
+        )}
       </div>
-
-      
 
       <h3>
         ({index + 1} page of {sculptureList.length})
