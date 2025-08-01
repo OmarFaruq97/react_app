@@ -13,6 +13,13 @@ export default function Book() {
     }
   }
 
+  function handlePreviousClick() {
+    if (index > 0) {
+      setIndex((prevIndex) => prevIndex - 1);
+      setShowMore(false);
+    }
+  }
+
   function handleToggle() {
     setShowMore((prev) => !prev);
   }
@@ -87,6 +94,7 @@ export default function Book() {
       </div>
 
       <button onClick={handleNextClick}>Next Page</button>
+      <button onClick={handlePreviousClick}>Previous Page</button>
     </div>
   );
 }
