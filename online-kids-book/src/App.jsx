@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { sculptureList } from "./info";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function Book() {
+  const [index, setIndex] = useState(0);
+  const [showMore, setShowMore] = useState(false);
+
+  function handleNextClick() {
+    setIndex(index + 1);
+    setShowMore(false);
+  }
+  function handleShowMore() {
+    setShowMore(!showMore);
+  }
+  let sculpture = sculptureList[index];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div style={{ textAlign: "center" }}>
+      <h1>Welcome to Kids E-Book</h1>
+      <h2>
+        <i>{sculpture.name}</i>
+      </h2>
+      <img src={sculpture.imgUrl}  width="300" height="250"/>
 
-export default App
+      <div>
+        <button onClick={handleShowMore}>
+        {showMore ? "Hide" : "Show"} details
+      </button>
+      {showMore && (
+        <ul style={{ listStyleType: "none", padding: 0 }}>
+          <li>
+            <strong>Description:</strong> {sculpture.description}
+          </li>
+          <li>
+            <strong>Habitat:</strong> {sculpture.habitat}
+          </li>
+          <li>
+            <strong>Food:</strong> {sculpture.food}
+          </li>
+          <li>
+            <strong>Sound:</strong> {sculpture.sound}
+          </li>
+          <li>
+            <strong>Lifespan:</strong> {sculpture.lifespan}
+          </li>
+          <li>
+            <strong>Type:</strong> {sculpture.type}
+          </li>
+        </ul>
+      )}
+      </div>
+
+      
+
+      <h3>
+        ({index + 1} page of {sculptureList.length})
+      </h3>
+
+      <button onClick={handleNextClick}>Next Page</button>
+    </div>
+  );
+}
