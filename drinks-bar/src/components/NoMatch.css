@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fafafa;
+}
+
+.error-page {
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-code {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #ff4c4c;
+  margin: 0;
+}
+
+.error-text {
+  font-size: 1.5rem;
+  color: #555;
+  margin-top: 1rem;
+}
