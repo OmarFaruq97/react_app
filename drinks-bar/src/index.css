@@ -1,4 +1,4 @@
-/* Container */
+/* Container styling */
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -6,18 +6,38 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Banner wrapper */
+/* Banner container background */
 .banner-container {
-  background-color: #ffe4e1;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #8d8d86;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Banner text */
 .banner p {
   font-size: 1.2rem;
-  color: #333;
+  color: #f8f8f8;
   line-height: 1.6;
   text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Button styling */
+.btn {
+  background-color: #575152;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  align-items: center;
+}
+
+.btn:hover {
+  background-color: #131212;
 }
