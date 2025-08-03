@@ -1,5 +1,5 @@
 nav {
-  background-color: #333;
+  background-color: #6b4343;
   padding: 1rem 0;
 }
 
@@ -40,5 +40,5 @@ ul li a {
 
 ul li a:hover,
 ul li a.active {
-  color: #4ebbe6;
+  color: #11a7e2;
 }

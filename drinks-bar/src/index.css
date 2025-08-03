@@ -1,43 +1,30 @@
-/* Container styling */
 .container {
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 40px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
 }
 
-/* Banner container background */
 .banner-container {
-  background-color: #8d8d86;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Banner text */
-.banner p {
-  font-size: 1.2rem;
-  color: #f8f8f8;
-  line-height: 1.6;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* Button styling */
-.btn {
-  background-color: #575152;
-  color: white;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
+  background-color: #ffffff; /* white banner */
+  padding: 20px;
   border-radius: 8px;
-  cursor: pointer;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.btn:hover {
-  background-color: #131212;
+.banner p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
 }
