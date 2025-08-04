@@ -1,6 +1,7 @@
 nav {
   background-color: #6b4343;
   padding: 1rem 0;
+  z-index: 100;
 }
 
 .nav-item-container {

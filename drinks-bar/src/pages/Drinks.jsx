@@ -4,28 +4,29 @@ import "./css/Drinks.css";
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a";
 
 const Drinks = () => {
-  const [products, setProducts] = useState([]);
+  const [myFaruk, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(url);
-      const data = await response.json();
+      const iqram = await response.json();
 
-      setProducts(data.drinks);
-      console.log(data.drinks);
+      setProducts(iqram.drinks);
+
+      console.log(iqram.drinks);
     };
     fetchProducts();
   }, []);
   return (
     <div className="container">
       <div className="cocktails-container">
-        {products.map((product) => (
-          <div className="cocktail-card" key={product.idDrink}>
-            <img alt="" src={product.strDrinkThumb} className="cocktail-img" />
+        {myFaruk.map((myFaruk) => (
+          <div className="cocktail-card" key={myFaruk.idDrink}>
+            <img alt="" src={myFaruk.strDrinkThumb} className="cocktail-img" />
             <div className="cocktail-info">
               <div className="content-text">
-                <h2 className="cocktail-name"> {product.strDrink}</h2>
-                <span className="cocktail-info"> {product.strCategory} </span>
+                <h2 className="cocktail-name"> {myFaruk.strDrink}</h2>
+                <span className="cocktail-info"> {myFaruk.strCategory} </span>
               </div>
               <div className="btn">View Details</div>
             </div>

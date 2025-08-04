@@ -2,14 +2,17 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px 20px 20px;
+  display: flow-root;
 }
 
-/* Grid container */
+/* Flex container */
 .cocktails-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center; /* Optional: center align cards */
+  padding: 10px;
 }
 
 /* Each drink card */
@@ -19,11 +22,15 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s ease;
+  flex: 1 1 220px;       /* Flex-grow, shrink, basis */
+  max-width: 300px;      /* Optional: limits the width */
+  box-sizing: border-box; /* Makes padding/border included in width */
 }
 
 .cocktail-card:hover {
   transform: scale(1.02);
 }
+
 
 /* Drink image */
 .cocktail-img {
