@@ -1,0 +1,45 @@
+nav {
+  background-color: #6b4343;
+  padding: 1rem 0;
+  z-index: 100;
+}
+
+.nav-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+.logo h1 {
+  color: #f5f5f5;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  display: flex; /* Make links side by side */
+  gap: 1.5rem;    /* Space between them */
+  margin: 0;
+  padding: 0;
+}
+
+ul li a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+ul li a:hover,
+ul li a.active {
+  color: #11a7e2;
+}

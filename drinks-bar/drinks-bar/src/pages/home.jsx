@@ -9,6 +9,7 @@ const Home = () => {
             your favorite drinks with friends. Cheers to great moments and new
             favorites!
           </p>
+          <div className="btn">View Drinks</div>
         </div>
       </div>
     </div>
