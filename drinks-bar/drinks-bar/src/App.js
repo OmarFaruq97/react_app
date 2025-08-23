@@ -4,7 +4,7 @@ import Home from "./pages/home";
 import NavBar from "./components/NavBar";
 import NoMatch from "./components/NoMatch";
 import Drinks from "./pages/Drinks";
-import productDetail from "./pages/ProductDetail";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
@@ -13,11 +13,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/drinks" element={<Drinks />} />
-        <Route path="/drinks/:id" element={<productDetail />} />
+        <Route path="/drink/:id" element={<ProductDetail />} />
+
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>
   );
 }
-
+console.log(ProductDetail);
 export default App;
