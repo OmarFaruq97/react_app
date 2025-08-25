@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import NoMatch from "./components/NoMatch";
 import Drinks from "./pages/Drinks";
 import ProductDetail from "./pages/ProductDetail";
+import SearchByCategory from "./pages/SearchByCategory";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/drinks" element={<Drinks />} />
         <Route path="/drink/:id" element={<ProductDetail />} />
+        <Route path="/search" element={<SearchByCategory />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>
