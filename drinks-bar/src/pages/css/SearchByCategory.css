@@ -1,6 +1,37 @@
-.container {
+/* .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px 20px 20px;
   display: flow-root;
+} */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flow-root;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.categoryBtn {
+  background: #aec7e0;
+  border: 1px solid #050718;
+  padding: 8px 20px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categoryBtn:hover {
+  background: #0a3563;
+  color: #fff;
+  border-color: #4493e7;
+  transform: translateY(-3px);
 }
