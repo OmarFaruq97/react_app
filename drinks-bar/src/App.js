@@ -6,6 +6,7 @@ import NoMatch from "./components/NoMatch";
 import Drinks from "./pages/Drinks";
 import ProductDetail from "./pages/ProductDetail";
 import SearchByCategory from "./pages/SearchByCategory";
+import RandomDrinks from "./pages/RandomDrinks";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/drinks" element={<Drinks />} />
         <Route path="/drink/:id" element={<ProductDetail />} />
         <Route path="/search" element={<SearchByCategory />} />
+        <Route path="/random" element={<RandomDrinks />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>
