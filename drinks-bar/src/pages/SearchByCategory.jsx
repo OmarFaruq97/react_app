@@ -1,53 +1,68 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react"; // Added useCallback for better function optimization
 import "./css/SearchByCategory.css";
 import { Link } from "react-router-dom";
 
-const categoriesUrl =
+// Moved URLs to constants (already done, kept as best practice)
+const CATEGORIES_URL =
   "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
+const PRODUCTS_URL =
+  "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=";
 
 const SearchByCategory = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [cache, setCache] = useState({}); // cache results
+  const [loading, setLoading] = useState(false); // keep track of loading state
+  const [error, setError] = useState(""); // Added error state to show user-friendly messages
+  const [cache, setCache] = useState({}); // Caching API responses for faster performance
 
+  // useEffect remains the same, but we add error handling
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(CATEGORIES_URL);
+        const { drinks } = await response.json();
+        setCategories(drinks || []); //  Add fallback to avoid null error
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+        setError("Failed to load categories. Please try again."); // Show user-friendly message
+      }
+    };
     fetchCategories();
   }, []);
 
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(categoriesUrl);
-      const { drinks } = await response.json();
-      setCategories(drinks);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
+  //  Optimized fetchProduct using useCallback and cache
+  const fetchProduct = useCallback(
+    async (category) => {
+      if (cache[category]) {
+        //  Load from cache if available → faster than fetching again
+        setProducts(cache[category]);
+        return;
+      }
 
-  const fetchProduct = async (category) => {
-    if (cache[category]) {
-      //load from cache if available
-      setProducts(cache[category]);
-      return;
-    }
+      setLoading(true); // Show loading spinner/message
+      setError(""); // Clear previous errors
 
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(
-          category
-        )}`
-      );
-      const { drinks } = await response.json();
-      setProducts(drinks);
-      setCache((prev) => ({ ...prev, [category]: drinks })); // save to cache
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+      try {
+        const response = await fetch(
+          PRODUCTS_URL + encodeURIComponent(category)
+        ); // encode category
+        const { drinks } = await response.json();
+        setProducts(drinks || []); //  Fallback for empty data
+        setCache((prev) => ({ ...prev, [category]: drinks || [] })); // Save results to cache
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to load drinks. Please try again."); //  Error handling
+      } finally {
+        setLoading(false); //  Stop loading after fetch
+      }
+    },
+    [cache]
+  );
+
+  // Early return for error state → cleaner JSX
+  if (error) {
+    return <div className="error-text">{error}</div>; // Display error message
+  }
 
   return (
     <div className="container">
@@ -57,7 +72,7 @@ const SearchByCategory = () => {
           <button
             key={category.strCategory}
             className="categoryBtn"
-            onClick={() => fetchProduct(category.strCategory)}
+            onClick={() => fetchProduct(category.strCategory)} //  Calls optimized fetchProduct
           >
             {category.strCategory}
           </button>
@@ -66,26 +81,31 @@ const SearchByCategory = () => {
 
       {/* Products */}
       <div className="cocktails-container">
-        {loading ? (
+        {loading ? ( //  Show loading message
           <p className="loading-text">Loading drinks...</p>
         ) : products.length > 0 ? (
-          products.map((product) => (
-            <div className="cocktail-card" key={product.idDrink}>
-              <img
-                alt={product.strDrink}
-                src={product.strDrinkThumb}
-                className="cocktail-img"
-              />
-              <div className="cocktail-info">
-                <h2 className="cocktail-name">{product.strDrink}</h2>
-                <Link to={`/drink/${product.idDrink}`} className="btn">
-                  View Details
-                </Link>
+          products.map(
+            (
+              { idDrink, strDrink, strDrinkThumb } //  Destructured mapping for cleaner code
+            ) => (
+              <div className="cocktail-card" key={idDrink}>
+                <img
+                  alt={strDrink}
+                  src={strDrinkThumb}
+                  className="cocktail-img"
+                  loading="lazy" //  Lazy loading images → faster initial render
+                />
+                <div className="cocktail-info">
+                  <h2 className="cocktail-name">{strDrink}</h2>
+                  <Link to={`/drink/${idDrink}`} className="btn">
+                    View Details
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))
+            )
+          )
         ) : (
-          <p className="loading-text">Select a category to view drinks.</p>
+          <p className="loading-text">Select a category to view drinks.</p> // Empty state message
         )}
       </div>
     </div>

@@ -5,36 +5,60 @@ import "./css/ProductDetail.css";
 const url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 const ProductDetail = () => {
-  const [product, setProduct] = useState(null);
   const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [Loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await fetch(url + id);
-      const data = await response.json();
-      setProduct(data.drinks[0]);
+      try {
+        const response = await fetch(url + id);
+        const data = await response.json();
+        setProduct(data.drinks ? data.drinks[0] : null);
+      } catch (error) {
+        console.error("Error fetching product: ", error);
+        setError(false);
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchProduct();
   }, [id]);
-  if (!product) {
-    return <div>Loading...please wait</div>;
+  if (Loading) {
+    return <div className="loading">Loading product details...</div>;
   }
+
+  if (error || !product) {
+    return <div className="loading">Failed to load product. Try again!</div>;
+  }
+
+  const {
+    strDrink,
+    strDrinkThumb,
+    strCategory,
+    strAlcoholic,
+    strGlass,
+    strInstructions,
+  } = product;
+
   return (
     <div className="product-detail-container">
-      <img src={product.strDrinkThumb} alt={product.strDrink} />
+      <img src={strDrinkThumb} alt={strDrink} className="product-img" />
       <div className="product-detail-info">
-        <h1>{product.strDrink}</h1>
+        <h1>{strDrink}</h1>
         <p>
-          <strong>Category:</strong> {product.strCategory}
+          <strong>Category:</strong> {strCategory}
         </p>
         <p>
-          <strong>Alcoholic:</strong> {product.strAlcoholic}
+          <strong>Alcoholic:</strong> {strAlcoholic}
         </p>
         <p>
-          <strong>Glass:</strong> {product.strGlass}
+          <strong>Glass:</strong> {strGlass}
         </p>
         <p>
-          <strong>Instructions:</strong> {product.strInstructions}
+          <strong>Instructions:</strong> {strInstructions}
         </p>
       </div>
     </div>

@@ -1,87 +1,103 @@
-/* Base container */
+/* Container for all content */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px 20px 20px;
-  display: flow-root;
+  max-width: 1200px;      /* limits max width */
+  margin: 20px auto;      /* centers container horizontally */
+  padding: 0 20px;        /* small horizontal padding */
+  font-family: Arial, sans-serif;
 }
 
-/* Flex container */
+/* Grid layout for cocktail cards */
 .cocktails-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center; /* Optional: center align cards */
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* responsive columns */
+  gap: 20px;                  /* space between cards */
+  justify-items: center;       /* centers cards in each grid cell */
 }
 
-/* Each drink card */
+/* Each cocktail card styling */
 .cocktail-card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;                  /* white background */
+  border-radius: 12px;               /* rounded corners */
   overflow: hidden;
-  transition: transform 0.2s ease;
-  flex: 1 1 220px;       /* Flex-grow, shrink, basis */
-  max-width: 300px;      /* Optional: limits the width */
-  box-sizing: border-box; /* Makes padding/border included in width */
-}
-
-.cocktail-card:hover {
-  transform: scale(1.02);
-}
-
-
-/* Drink image */
-.cocktail-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-/* Info section */
-.cocktail-info {
-  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);  /* subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s; /* smooth hover animation */
   text-align: center;
 }
 
-/* Drink name */
+/* Hover effect for card */
+.cocktail-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Cocktail image */
+.cocktail-img {
+  width: 100%;             /* full width of card */
+  height: 200px;           /* fixed height */
+  object-fit: cover;       /* crop image nicely */
+}
+
+/* Info container inside each card */
+.cocktail-info {
+  padding: 15px;
+}
+
+/* Cocktail name styling */
 .cocktail-name {
   font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  color: #333;
 }
 
 /* Category text */
-.cocktail-info span {
+.cocktail-category {
   font-size: 14px;
-  color: #666;
+  color: #555;
+  display: block;
+  margin-bottom: 10px;
 }
 
-/* Button */
+/* Button styling */
 .btn {
-  margin-top: 12px;
   display: inline-block;
-  background-color: #007bff;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  padding: 10px 20px;
+  background: #007bff;       /* blue button */
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
 }
 
+/* Button hover effect */
 .btn:hover {
-  background-color: #0056b3;
+  background: #0056b3;
 }
 
-/* Responsive tweaks */
-@media (max-width: 500px) {
+/* Loading text styling */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  padding: 50px 0;
+  color: #007bff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cocktail-img {
+    height: 180px;    /* slightly smaller images on mobile */
+  }
+
   .cocktail-name {
     font-size: 16px;
   }
 
-  .cocktail-img {
-    height: 160px;
+  .cocktail-category {
+    font-size: 13px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 16px;
   }
 }
